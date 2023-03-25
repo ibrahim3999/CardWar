@@ -27,7 +27,7 @@ namespace ariel {
 
     std::string getTopCard(){
 
-        return"";
+        return "";
     }
     
 

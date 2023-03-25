@@ -16,9 +16,12 @@ public:
     void printStats();
     void printLastTurn();
     int getCurrentRound();
-    Player getWinner();
-    Player getPlayer1();
-    Player getPlayer2();
+    std::string getWinner();
+    //  Player getPlayer1();
+    //  Player getPlayer2();
+
+private: 
+    std::string winner;
     
 };
 }

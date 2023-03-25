@@ -37,4 +37,7 @@ int Game::getCurrentRound(){
     return 0;
 
 }
+ std::string Game::getWinner(){
+    return "";
+ }
 };

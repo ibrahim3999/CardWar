@@ -16,6 +16,7 @@ public:
 private:
     std::string m_name;
     int m_cardCount;
+    std::string topCard;
     };
 }
 #endif 

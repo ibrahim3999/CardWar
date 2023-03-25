@@ -8,9 +8,7 @@ namespace ariel {
 class Card {
 
 public:
-    Card();
-       
-    
+    Card(); 
 };
 }
 #endif 
