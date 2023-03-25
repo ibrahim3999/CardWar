@@ -1,12 +1,13 @@
 #include "player.hpp"
 #include "game.hpp"
+#include "card.hpp"
 
 namespace ariel {
     // Constructor
     Player::Player(std::string name) : m_name(name), m_cardCount(0) {}
 
-    // Getter method for m_cardCount
-    int Player::getCardCount() const {
+    // Getter method 
+    int Player::getCardCount()  {
         return 0;
     }
 
@@ -20,4 +21,14 @@ namespace ariel {
         return 0;
         
     }
+    std::string Player::getName(){
+        return "";
+    }
+
+    std::string getTopCard(){
+
+        return"";
+    }
+    
+
 }

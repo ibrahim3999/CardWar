@@ -10,26 +10,31 @@ Game::Game(Player& player1, Player& player2){
 }
 
 void Game::playTurn() {
-    // Implement playing a single turn of the game
+    //  playing a single turn of the game
 }
 
 void Game::playAll() {
-    // Implement playing the entire game
+    //  playing the entire game
 }
 
 void Game::printWiner() {
-    // Implement printing the winner of the game
+    //  printing the winner of the game
 }
 
 void Game::printLog() {
-    // Implement printing the game log
+    //  printing the game log
 }
 
 void Game::printStats() {
-    // Implement printing statistics about the game
+    //  printing statistics about the game
 }
 
 void Game::printLastTurn() {
-    // Implement printing the last turn of the game
+    //  printing the last turn of the game
 }
+int Game::getCurrentRound(){
+    //  return Current Round
+    return 0;
+
 }
+};

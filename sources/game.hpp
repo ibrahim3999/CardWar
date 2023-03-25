@@ -1,7 +1,6 @@
 #ifndef Game_hpp
 #define Game_hpp
 #include "player.hpp"
-#include <vector>
 #include <string>
 
 namespace ariel {
@@ -16,6 +15,10 @@ public:
     void printLog();
     void printStats();
     void printLastTurn();
+    int getCurrentRound();
+    Player getWinner();
+    Player getPlayer1();
+    Player getPlayer2();
     
 };
 }
