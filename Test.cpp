@@ -24,6 +24,8 @@ TEST_CASE(" Testing Game Class") {
         game.playTurn();
         game.playTurn();
         CHECK_EQ(game.getCurrentRound(), 3);
+        game.playTurn();
+        CHECK_EQ(game.getCurrentRound(), 4);
 
     }
 
@@ -101,12 +103,6 @@ TEST_CASE("Testing Player class")
     SUBCASE("Testing cardesTaken()"){
         CHECK_EQ(p1.cardesTaken(), 0);
         CHECK_EQ(p2.cardesTaken(), 0);
-       
-       CHECK_EQ(p1.cardesTaken(), 0);/*  
-        CHECK_EQ(p2.cardesTaken(), 0);
-        CHECK_EQ(p1.cardesTaken(), 0);
-        CHECK_EQ(p2.cardesTaken(), 0);
-        */
     }
  
 }
