@@ -1,12 +1,18 @@
 #include <iostream>
 #include <vector>
 #include "game.hpp"
+#include "card.hpp"
 using namespace std;
 
 namespace ariel {
-
-Game::Game(Player& player1, Player& player2){
+//Card cards
+   
+Game::Game(Player& player1, Player& player2): player1(player1), player2(player2){
     // Constructor 
+}
+Game::~Game(){
+   // delete player1;
+   // delete player2;
 }
 
 void Game::playTurn() {
@@ -37,7 +43,17 @@ int Game::getCurrentRound(){
     return 0;
 
 }
- std::string Game::getWinner(){
+std::string Game::getWinner(){
     return "";
  }
+
+void Game::createCards() {
+    // creat all cards game
+    for (int suit = static_cast<int>(Card::Suit::CLUBS); suit <= static_cast<int>(Card::Suit::SPADES); suit++) {
+        for (int rank = static_cast<int>(Card::Rank::TWO); rank <= static_cast<int>(Card::Rank::ACE); rank++) {
+            Cards.push(Card(static_cast<Card::Suit>(suit), static_cast<Card::Rank>(rank)));
+            
+        }
+    }
+}
 };

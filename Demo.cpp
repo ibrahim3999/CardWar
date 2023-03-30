@@ -20,16 +20,20 @@ int main() {
   // Create two players with their names 
    Player p1("Alice");
    Player p2("Bob");
-
+   cout << p1.getName() <<std::endl;
+   //Card c1(Card::Suit::CLUBS,Card::Rank::FIVE);
+   //Card c2(Card::Suit::CLUBS,Card::Rank::EIGHT);
+   //cout << c1.isLarger(c2)<<std::endl;
    Game game(p1,p2); 
+   //game.createCards(); 52
    for (int i=0;i<5;i++) {
     game.playTurn();
    }
    game.printLastTurn(); // print the last turn stats. For example:
                                                     // Alice played Queen of Hearts Bob played 5 of Spades. Alice wins.
                                                     // Alice played 6 of Hearts Bob played 6 of Spades. Draw. Alice played 10 of Clubs Bob played 10 of Diamonds. draw. Alice played Jack of Clubs Bob played King of Diamonds. Bob wins.
-   cout << p1.stacksize() << endl; //prints the amount of cards left. should be 21 but can be less if a draw was played
-   cout << p2.cardesTaken() << endl; // prints the amount of cards this player has won. 
+  // cout << p1.stacksize() << endl; //prints the amount of cards left. should be 21 but can be less if a draw was played
+  // cout << p2.cardesTaken() << endl; // prints the amount of cards this player has won. 
    game.playAll(); //playes the game untill the end
    game.printWiner(); // prints the name of the winning player
    game.printLog(); // prints all the turns played one line per turn (same format as game.printLastTurn())

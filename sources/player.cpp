@@ -6,6 +6,12 @@ namespace ariel {
     // Constructor
     Player::Player(std::string name) : m_name(name), m_cardCount(0) {}
 
+    // Destructor
+    Player::~Player(){
+       // delete[] m_name;
+       // delete m_cardCount;
+    }
+
     // Getter method 
     int Player::getCardCount()  {
         return 0;
@@ -22,13 +28,17 @@ namespace ariel {
         
     }
     std::string Player::getName(){
-        return "";
+        return this->m_name;
     }
 
-    std::string getTopCard(){
+    std::string Player::getTopCard(){
 
         return "";
     }
+    std::queue<Card> Player::getVictoriesQueue(){
+        return victoriesQueue;
+    }
+
     
 
 }
