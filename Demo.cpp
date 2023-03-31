@@ -21,11 +21,14 @@ int main() {
    Player p1("Alice");
    Player p2("Bob");
    cout << p1.getName() <<std::endl;
-   //Card c1(Card::Suit::CLUBS,Card::Rank::FIVE);
+  // Card c1(Card::Suit::CLUBS,Card::Rank::FIVE);
    //Card c2(Card::Suit::CLUBS,Card::Rank::EIGHT);
-   //cout << c1.isLarger(c2)<<std::endl;
-   Game game(p1,p2); 
-   //game.createCards(); 52
+   //cout << c1.toString()<<std::endl;
+   Game game(p1,p2);
+   game.createCards();// 52
+  
+   game.randomDistribution();
+   
    for (int i=0;i<5;i++) {
     game.playTurn();
    }
