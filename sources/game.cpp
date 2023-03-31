@@ -5,6 +5,7 @@
 #include<random>
 # define CARDS_NUM 52
 # define PLAYER_NUM 2
+# define WAR_TRUN_NUM 3
 using namespace std;
 
 namespace ariel {
@@ -22,32 +23,85 @@ void Game::playTurn() {
     //  playing a single turn of the game
     Card player1Card=player1.getTopCard();
     Card player2Card=player2.getTopCard();
-    cout << "player 1:"+player1Card.toString() << std::endl;
-    cout << "player 2:"+ player2Card.toString() << std::endl;
     if(player1Card.getRank()>player2Card.getRank()){
         //player 1 wins the trun
         player1.setVictoriesQueue(player1Card);
         player1.setVictoriesQueue(player2Card);
-        cout << "player1 is win "<< std::endl;
+
+        lastTrun= player1.getName() + " played " + player1Card.toString() + ". ";
+        lastTrun += player2.getName() + " played " + player2Card.toString() + ". ";
+        lastTrun += player1.getName() + " wins.";
     }
     else if(player1Card.getRank()<player2Card.getRank()){
         //player 2 wins the trun
         player2.setVictoriesQueue(player1Card);
         player2.setVictoriesQueue(player2Card);
-        cout << "player2 is win "<< std::endl;
-    }   
+
+        lastTrun=player2.getName()+" played "+player2Card.toString()+" ";
+        lastTrun+=player1.getName()+" played "+player1Card.toString()+". ";
+        lastTrun+=player2.getName()+" wins";
+    } 
+    else if(player1Card.getRank()==player2Card.getRank()){
+        // War truns
+        cout << "A NEW WAR !!"<<std::endl;
+        for(int i=0;i<WAR_TRUN_NUM+1;i++)
+        {
+            player1Card=player1.getTopCard();
+            player2Card=player2.getTopCard();
+            if(i==3 && player1Card.getRank()==player2Card.getRank()){
+                i=0;//WAR AGAIN !!!  
+                cout << "A NEW WAR !!"<<std::endl;
+            }
+        }
+        if(player1Card.getRank()>player2Card.getRank()){
+        //player 1 wins the trun
+        player1.setVictoriesQueue(player1Card);
+        player1.setVictoriesQueue(player2Card);
+
+        lastTrun= player1.getName() + " played " + player1Card.toString() + ". ";
+        lastTrun += player2.getName() + " played " + player2Card.toString() + ". ";
+        lastTrun += player1.getName() + " wins.";
+        }
+        else if(player1Card.getRank()<player2Card.getRank()){
+        //player 2 wins the trun
+        player2.setVictoriesQueue(player1Card);
+        player2.setVictoriesQueue(player2Card);
+
+        lastTrun=player2.getName()+" played "+player2Card.toString()+" ";
+        lastTrun+=player1.getName()+" played "+player1Card.toString()+". ";
+        lastTrun+=player2.getName()+" wins";
+        } 
+
+
+    }  
 }
 
 void Game::playAll() {
     //  playing the entire game
+    while(player1.getGameCards().size()!=0 || player2.getGameCards().size()!=0)
+    {
+        playTurn();
+        gameLog+=lastTrun+"\n";
+    }
+    if(player1.getVictoriesQueue().size()>player2.getVictoriesQueue().size()){
+        winner=player1.getName();
+    }
+    else if(player1.getVictoriesQueue().size()<player2.getVictoriesQueue().size()){
+        winner=player2.getName();
+    }
+    else{
+        winner=" Draw ";
+    }
 }
 
 void Game::printWiner() {
     //  printing the winner of the game
+    cout << "The WINEER is : "+winner << std::endl;
 }
 
 void Game::printLog() {
     //  printing the game log
+    cout << gameLog;
 }
 
 void Game::printStats() {
@@ -56,6 +110,7 @@ void Game::printStats() {
 
 void Game::printLastTurn() {
     //  printing the last turn of the game
+    cout << lastTrun <<std::endl;
 }
 int Game::getCurrentRound(){
     //  return Current Round

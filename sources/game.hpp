@@ -27,6 +27,8 @@ public:
 
 private: 
     std::string winner;
+    std::string lastTrun;
+    std::string gameLog;
     Player player1;
     Player player2;
     std::vector<Card> Cards;// Cards of the current game;
