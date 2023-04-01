@@ -25,8 +25,7 @@ void Game::playTurn() {
     Card player2Card=player2.getTopCard();
     if(player1Card.getRank()>player2Card.getRank()){
         //player 1 wins the trun
-        player1.setVictoriesQueue(player1Card);
-        player1.setVictoriesQueue(player2Card);
+        player1.setVictoriesNum(2);
 
         lastTrun= player1.getName() + " played " + player1Card.toString() + ". ";
         lastTrun += player2.getName() + " played " + player2Card.toString() + ". ";
@@ -34,8 +33,8 @@ void Game::playTurn() {
     }
     else if(player1Card.getRank()<player2Card.getRank()){
         //player 2 wins the trun
-        player2.setVictoriesQueue(player1Card);
-        player2.setVictoriesQueue(player2Card);
+
+        player2.setVictoriesNum(2);
 
         lastTrun=player2.getName()+" played "+player2Card.toString()+" ";
         lastTrun+=player1.getName()+" played "+player1Card.toString()+". ";
@@ -43,6 +42,7 @@ void Game::playTurn() {
     } 
     else if(player1Card.getRank()==player2Card.getRank()){
         // War truns
+        int WarNum=1;
         cout << "A NEW WAR !!"<<std::endl;
         for(int i=0;i<WAR_TRUN_NUM+1;i++)
         {
@@ -50,22 +50,22 @@ void Game::playTurn() {
             player2Card=player2.getTopCard();
             if(i==3 && player1Card.getRank()==player2Card.getRank()){
                 i=0;//WAR AGAIN !!!  
+                WarNum++;
                 cout << "A NEW WAR !!"<<std::endl;
             }
         }
         if(player1Card.getRank()>player2Card.getRank()){
         //player 1 wins the trun
-        player1.setVictoriesQueue(player1Card);
-        player1.setVictoriesQueue(player2Card);
-
+        player1.setVictoriesNum(10*WarNum);
+        cout<<player1.getName() +" WIN THIS WAR "<<std::endl;
         lastTrun= player1.getName() + " played " + player1Card.toString() + ". ";
         lastTrun += player2.getName() + " played " + player2Card.toString() + ". ";
         lastTrun += player1.getName() + " wins.";
         }
         else if(player1Card.getRank()<player2Card.getRank()){
         //player 2 wins the trun
-        player2.setVictoriesQueue(player1Card);
-        player2.setVictoriesQueue(player2Card);
+        cout<<player2.getName() +" WIN THIS WAR "<<std::endl;
+        player2.setVictoriesNum(10*WarNum); 
 
         lastTrun=player2.getName()+" played "+player2Card.toString()+" ";
         lastTrun+=player1.getName()+" played "+player1Card.toString()+". ";
@@ -78,20 +78,26 @@ void Game::playTurn() {
 
 void Game::playAll() {
     //  playing the entire game
-    while(player1.getGameCards().size()!=0 || player2.getGameCards().size()!=0)
-    {
+
+    while(player1.getGameCards().size()!=0 || player2.getGameCards().size()!=0){
         playTurn();
         gameLog+=lastTrun+"\n";
     }
-    if(player1.getVictoriesQueue().size()>player2.getVictoriesQueue().size()){
+
+    if(player1.getVictoriesNum()>player2.getVictoriesNum()){
         winner=player1.getName();
     }
-    else if(player1.getVictoriesQueue().size()<player2.getVictoriesQueue().size()){
+    else if(player1.getVictoriesNum()<player2.getVictoriesNum()){
         winner=player2.getName();
     }
     else{
         winner=" Draw ";
     }
+    cout << player1.getVictoriesNum()<< std::endl;
+    cout << player2.getVictoriesNum()<< std::endl;
+
+    player1.setVictoriesNum(0);
+    player2.setVictoriesNum(0);
 }
 
 void Game::printWiner() {

@@ -15,15 +15,15 @@ public:
     int  cardesTaken();
     ariel::Card getTopCard();
     std::string getName();
-    std::queue<Card> getVictoriesQueue();
     std::queue<Card> getGameCards();
     void setGameCards(Card card);
-    void setVictoriesQueue(Card carrd);
+    int  getVictoriesNum();
+    void setVictoriesNum(int i);
 private:
     std::string m_name;
     int m_cardCount;
     std::string topCard;
-    std::queue<Card> victoriesQueue;
+    int victoriesNum;
     std::queue<Card> gameCards;
     };
 }

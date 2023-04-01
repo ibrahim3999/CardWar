@@ -4,7 +4,7 @@
 
 namespace ariel {
     // Constructor
-    Player::Player(std::string name) : m_name(name), m_cardCount(0) {}
+    Player::Player(std::string name) : m_name(name), m_cardCount(0),victoriesNum(0) {}
 
     // Destructor
     Player::~Player(){
@@ -40,11 +40,6 @@ namespace ariel {
         gameCards.pop();
         return card;
     }
-
-    std::queue<Card> Player::getVictoriesQueue(){
-        return victoriesQueue;
-    }
-
     std::queue<Card> Player::getGameCards(){
         return gameCards;
     }
@@ -52,9 +47,11 @@ namespace ariel {
     void Player::setGameCards(Card card){
         gameCards.push(card);
     }
-    
-    void Player::setVictoriesQueue(Card card){
-        victoriesQueue.push(card);
+    int  Player::getVictoriesNum(){
+        return victoriesNum;
+    }
+    void Player::setVictoriesNum(int i){
+        victoriesNum+=i;
     }
     
     
