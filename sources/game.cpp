@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "game.hpp"
+#include "player.hpp"
 #include "card.hpp"
 #include<random>
 # define CARDS_NUM 52
@@ -12,6 +13,9 @@ namespace ariel {
 //Card cards
    
 Game::Game(Player& player1, Player& player2): player1(player1), player2(player2){
+    createCards();
+    cout <<"hello"<<std::endl;
+    randomDistribution();
     // Constructor 
 }
 Game::~Game(){
@@ -134,6 +138,7 @@ void Game::createCards() {
             Cards.insert(Cards.begin(),Card(static_cast<Card::Suit>(suit), static_cast<Card::Rank>(rank))); 
         }
     }
+    cout << Cards.size()<<std::endl;
 }
 void Game::randomDistribution() {
     // Distribute cards among the players

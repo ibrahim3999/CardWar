@@ -1,6 +1,9 @@
 #include "player.hpp"
 #include "game.hpp"
 #include "card.hpp"
+#include<stack>
+
+using namespace std;
 
 namespace ariel {
     // Constructor
@@ -32,15 +35,11 @@ namespace ariel {
     }
     
     Card Player::getTopCard(){
-        if (gameCards.empty()) {
-            // handle the case where the queue is empty
-            throw std::runtime_error("The gameCards queue is empty");
-         }
-        Card card=gameCards.front();
+        Card card=gameCards.top();
         gameCards.pop();
         return card;
     }
-    std::queue<Card> Player::getGameCards(){
+    std::stack<Card> Player::getGameCards(){
         return gameCards;
     }
 

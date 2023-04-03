@@ -21,10 +21,7 @@ int main() {
    Player p1("Alice");
    Player p2("Bob");
    Game game(p1,p2);
-   game.createCards();// 52
   
-   game.randomDistribution();
-   
    for (int i=0;i<5;i++) {
     game.playTurn();
    }
