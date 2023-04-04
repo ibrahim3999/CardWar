@@ -13,10 +13,10 @@ namespace ariel {
 //Card cards
    
 Game::Game(Player& player1, Player& player2): player1(player1), player2(player2){
-    createCards();
-    cout <<"hello"<<std::endl;
-    randomDistribution();
     // Constructor 
+    randomDistribution();
+    player1.setStackSize(CARDS_NUM/PLAYER_NUM);
+    player2.setStackSize(CARDS_NUM/PLAYER_NUM);   
 }
 Game::~Game(){
    // delete player1;
@@ -25,6 +25,7 @@ Game::~Game(){
 
 void Game::playTurn() {
     //  playing a single turn of the game
+
     Card player1Card=player1.getTopCard();
     Card player2Card=player2.getTopCard();
     if(player1Card.getRank()>player2Card.getRank()){
@@ -82,7 +83,6 @@ void Game::playTurn() {
 
 void Game::playAll() {
     //  playing the entire game
-
     while(player1.getGameCards().size()!=0 || player2.getGameCards().size()!=0){
         playTurn();
         gameLog+=lastTrun+"\n";
@@ -130,30 +130,35 @@ int Game::getCurrentRound(){
 std::string Game::getWinner(){
     return "";
  }
-
-void Game::createCards() {
-    // creat all cards game
+ void Game::initializeCards() {
+    // Initialize the deck of cards
     for (int suit = static_cast<int>(Card::Suit::CLUBS); suit <= static_cast<int>(Card::Suit::SPADES); suit++) {
         for (int rank = static_cast<int>(Card::Rank::TWO); rank <= static_cast<int>(Card::Rank::ACE); rank++) {
-            Cards.insert(Cards.begin(),Card(static_cast<Card::Suit>(suit), static_cast<Card::Rank>(rank))); 
+            Card card(static_cast<Card::Suit>(suit), static_cast<Card::Rank>(rank));
+            Cards.push_back(card);
+            initialCards.push_back(card);
         }
     }
-    cout << Cards.size()<<std::endl;
 }
 void Game::randomDistribution() {
+    // Initialize 
+    initializeCards();
+   
     // Distribute cards among the players
     std::random_device rd;
     std::mt19937 gen(rd());
     for (int i = 0; i < PLAYER_NUM; i++) {
         Player& currentPlayer = (i == 0) ? player1 : player2; // get reference to current player
         for (int j = 0; j < CARDS_NUM / PLAYER_NUM; j++) { // distribute equal number of cards to each player
-            std::uniform_int_distribution<std::vector<Card>::size_type> dist(0, Cards.size() - 1); // create distribution
+            std::uniform_int_distribution<std::vector<Card>::size_type> dist(0, initialCards.size() - 1); // create distribution
             std::vector<Card>::size_type randomIndex = dist(gen);
-            currentPlayer.setGameCards(Cards[randomIndex]); // add card to player's hand
-            Cards.erase(std::next(Cards.begin(), static_cast<long>(randomIndex))); // remove card from deck
-           // cout<< "player 1:"<<player1.getTopCard().toString() <<std::endl;
-           // cout<< "player 2:"<<player2.getTopCard().toString()<<std::endl;
+            Card card = initialCards[randomIndex];
+            currentPlayer.setGameCards(card); // add card to player's hand
+            initialCards.erase(std::next(initialCards.begin(), static_cast<long>(randomIndex))); // remove card from deck
         }
     }
+   
+   
+    
 }
 };

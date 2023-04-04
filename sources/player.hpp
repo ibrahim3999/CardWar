@@ -5,28 +5,24 @@
 #include<string>
 #include<stack>
 
-
-
 using namespace std;
-
 
 namespace ariel {
     class Player {
         public:
             Player(std::string name);
-            ~Player();
-            int getCardCount();
             int  stacksize();
+            void  setStackSize(int size);
             int  cardesTaken();
             Card getTopCard();
             std::string getName();
-            std::stack<Card> getGameCards();
+            std::stack<Card>& getGameCards();
             void setGameCards(Card card);
             int  getVictoriesNum();
             void setVictoriesNum(int i);
         private:
             std::string m_name;
-            int m_cardCount;
+            int cardsLeftCount;
             std::string topCard;
             int victoriesNum;
             std::stack<Card> gameCards;

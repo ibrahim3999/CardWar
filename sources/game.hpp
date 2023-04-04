@@ -20,7 +20,7 @@ public:
     void printLastTurn();
     int getCurrentRound();
     std::string getWinner();
-    void createCards();
+    void initializeCards();
     void randomDistribution();
     //  Player getPlayer1();
     //  Player getPlayer2();
@@ -29,8 +29,9 @@ private:
     std::string winner;
     std::string lastTrun;
     std::string gameLog;
-    Player player1;
-    Player player2;
+    std::vector<Card> initialCards;
+    Player &player1;
+    Player &player2;
     std::vector<Card> Cards;// Cards of the current game;
     
 };
