@@ -18,10 +18,10 @@ public:
     void printLog();
     void printStats();
     void printLastTurn();
-    int getCurrentRound();
     std::string getWinner();
     void initializeCards();
     void randomDistribution();
+    void reset();
     //  Player getPlayer1();
     //  Player getPlayer2();
 
