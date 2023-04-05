@@ -27,12 +27,17 @@ namespace ariel {
         return this->m_name;
     }
     
-    Card Player::getTopCard(){
-        Card card=gameCards.top();
+   Card Player::getTopCard(){
+        if (gameCards.empty()) {
+            throw std::out_of_range("No cards left in gameCards stack");
+        }
+        Card card = gameCards.top();
         gameCards.pop();
         cardsLeftCount--;
         return card;
-    }
+    
+   
+}
 
     std::stack<Card>& Player::getGameCards(){
         return gameCards;
