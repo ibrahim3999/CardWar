@@ -150,35 +150,6 @@ void Game::printStats() {
         throw std::runtime_error("An error occurred while printing game statistics: " + std::string(e.what()));
     }
 }
-/*
-void printStats() {
-    for (int i = 0; i < numPlayers; i++) {
-        Player* player = players[i];
-        int totalGames = player->wins + player->losses + player->draws;
-        double winRate = (double) player->wins / totalGames;
-        int cardsWon = 0; // TODO: calculate cards won by the player
-        // TODO: calculate any other stats you want to print
-
-        std::cout << "Player " << player->name << " stats:" << std::endl;
-        std::cout << "  Win rate: " << winRate << std::endl;
-        std::cout << "  Cards won: " << cardsWon << std::endl;
-        // TODO: print any other stats
-
-        std::cout << std::endl;
-    }
-
-    int totalGames = numGames * numPlayers;
-    int totalDraws = 0;
-    for (int i = 0; i < numGames; i++) {
-        totalDraws += games[i].draws * 2;
-    }
-    double drawRate = (double) totalDraws / totalGames;
-
-    std::cout << "Overall stats:" << std::endl;
-    std::cout << "  Draw rate: " << drawRate << std::endl;
-    std::cout << "  Total draws: " << totalDraws << std::endl;
-}
-*/
 
 void Game::printLastTurn() {
     // printing the last turn of the game
