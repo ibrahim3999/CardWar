@@ -111,10 +111,16 @@ void Game::playAll() {
         }
 
         if (player1.getVictoriesNum() > player2.getVictoriesNum()) {
+            player1.setWinsNum();//++
+            player2.setLossNum();//++
             winner = player1.getName();
         } else if (player1.getVictoriesNum() < player2.getVictoriesNum()) {
+            player2.setWinsNum();//++
+            player1.setLossNum();//++
             winner = player2.getName();
         } else {
+            player1.setDrawNum();//++
+            player2.setDrawNum();
             winner = " Draw ";
         }
         player1.setVictoriesNum(0);
@@ -130,16 +136,49 @@ void Game::printStats() {
     try {
         std::cout << "Player 1 name: " << player1.getName() << std::endl;
         std::cout << "Player 1 victories: " << player1.getVictoriesNum() << std::endl;
-        std::cout << "Player 1 cards remaining: " << player1.getGameCards().size() << std::endl;
+        int totalGames = player1.getWinsNum() + player1.getLossNum()+ player1.getDrawNum();
+        double winRate = (double) player1.getWinsNum() / totalGames;
+        std::cout << " Win rate: " << winRate << std::endl;
 
         std::cout << "Player 2 name: " << player2.getName() << std::endl;
         std::cout << "Player 2 victories: " << player2.getVictoriesNum() << std::endl;
-        std::cout << "Player 2 cards remaining: " << player2.getGameCards().size() << std::endl;
+        totalGames = player2.getWinsNum() + player2.getLossNum()+ player2.getDrawNum();
+        winRate = (double) player1.getWinsNum() / totalGames;
+        std::cout << " Win rate: " << winRate << std::endl;
     }
     catch (std::exception& e) {
         throw std::runtime_error("An error occurred while printing game statistics: " + std::string(e.what()));
     }
 }
+/*
+void printStats() {
+    for (int i = 0; i < numPlayers; i++) {
+        Player* player = players[i];
+        int totalGames = player->wins + player->losses + player->draws;
+        double winRate = (double) player->wins / totalGames;
+        int cardsWon = 0; // TODO: calculate cards won by the player
+        // TODO: calculate any other stats you want to print
+
+        std::cout << "Player " << player->name << " stats:" << std::endl;
+        std::cout << "  Win rate: " << winRate << std::endl;
+        std::cout << "  Cards won: " << cardsWon << std::endl;
+        // TODO: print any other stats
+
+        std::cout << std::endl;
+    }
+
+    int totalGames = numGames * numPlayers;
+    int totalDraws = 0;
+    for (int i = 0; i < numGames; i++) {
+        totalDraws += games[i].draws * 2;
+    }
+    double drawRate = (double) totalDraws / totalGames;
+
+    std::cout << "Overall stats:" << std::endl;
+    std::cout << "  Draw rate: " << drawRate << std::endl;
+    std::cout << "  Total draws: " << totalDraws << std::endl;
+}
+*/
 
 void Game::printLastTurn() {
     // printing the last turn of the game
@@ -213,13 +252,7 @@ void Game::randomDistribution() {
 }
 void Game::reset()
 {
-   /**std::string winner;
-    std::string lastTrun;
-    std::string gameLog;
-    std::vector<Card> initialCards;
-    Player &player1;
-    Player &player2;
-    std::vector<Card> Cards;// Cards of the current game;*/ 
+    //reset game
     winner="";
     lastTrun="";
     gameLog="";

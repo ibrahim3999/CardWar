@@ -20,7 +20,19 @@ namespace ariel {
             void setGameCards(Card card);
             int  getVictoriesNum();
             void setVictoriesNum(int i);
+            int  getWinsNum(); 
+            int getLossNum();
+            int getDrawNum();
+            void  setWinsNum(); 
+            void setLossNum();
+            void setDrawNum();
         private:
+        /*
+        player1.getWinsNum() + player1.getLossNum()+ player1.getDrawNum();
+        */
+            int winNum;
+            int lossNum;
+            int drawNum;
             std::string m_name;
             int cardsLeftCount;
             std::string topCard;
