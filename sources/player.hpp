@@ -26,6 +26,7 @@ namespace ariel {
             void  setWinsNum(); 
             void setLossNum();
             void setDrawNum();
+            void resetVictoriesNum();
         private:
         /*
         player1.getWinsNum() + player1.getLossNum()+ player1.getDrawNum();

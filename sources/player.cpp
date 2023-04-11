@@ -69,6 +69,9 @@ namespace ariel {
 
     void Player::setVictoriesNum(int i){
         victoriesNum+=i;
-    }   
+    } 
+    void Player::resetVictoriesNum(){
+        victoriesNum=0;
+    }    
 
 }

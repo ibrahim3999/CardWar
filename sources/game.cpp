@@ -65,7 +65,7 @@ void Game::playTurn() {
         else if(player1Card.getRank()==player2Card.getRank()){
             // War turns
             int WarNum=1;
-            cout << "A NEW WAR !!"<<std::endl;
+            //cout << "A NEW WAR !!"<<std::endl;
             for(int i=0;i<WAR_TRUN_NUM+1;i++)
             {
                 player1Card=player1.getTopCard();
@@ -73,7 +73,7 @@ void Game::playTurn() {
                 if(i==3 && player1Card.getRank()==player2Card.getRank()){
                     i=0;//WAR AGAIN !!!  
                     WarNum++;
-                    cout << "A NEW WAR !!"<<std::endl;
+                    //cout << "A NEW WAR !!"<<std::endl;
                 }
             }
             if(player1Card.getRank()>player2Card.getRank()){
@@ -138,13 +138,17 @@ void Game::printStats() {
         std::cout << "Player 1 victories: " << player1.getVictoriesNum() << std::endl;
         int totalGames = player1.getWinsNum() + player1.getLossNum()+ player1.getDrawNum();
         double winRate = (double) player1.getWinsNum() / totalGames;
+        double darwRate=(double) player1.getDrawNum() / totalGames;
         std::cout << " Win rate: " << winRate << std::endl;
+        std::cout << " draw rate: " << darwRate << std::endl;
 
         std::cout << "Player 2 name: " << player2.getName() << std::endl;
         std::cout << "Player 2 victories: " << player2.getVictoriesNum() << std::endl;
         totalGames = player2.getWinsNum() + player2.getLossNum()+ player2.getDrawNum();
-        winRate = (double) player1.getWinsNum() / totalGames;
+        winRate = (double) player2.getWinsNum() / totalGames;
+        darwRate=(double) player2.getDrawNum() / totalGames;
         std::cout << " Win rate: " << winRate << std::endl;
+        std::cout << " draw rate: " << darwRate << std::endl;
     }
     catch (std::exception& e) {
         throw std::runtime_error("An error occurred while printing game statistics: " + std::string(e.what()));
@@ -229,8 +233,8 @@ void Game::reset()
     gameLog="";
     player1.setStackSize(0);
     player2.setStackSize(0);
-    player1.setVictoriesNum(0);
-    player2.setVictoriesNum(0);
+    player1.resetVictoriesNum();
+    player2.resetVictoriesNum();
     randomDistribution();
     player1.setStackSize(CARDS_NUM/PLAYER_NUM);
     player2.setStackSize(CARDS_NUM/PLAYER_NUM);
